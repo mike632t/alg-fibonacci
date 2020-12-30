@@ -1,0 +1,82 @@
+PROGRAM fibonacci
+ 
+{  Copyright(C)2020    MEJT
+ 
+   Prints the first 30 numbers of the fibonacci series.
+  
+   This  program is free software: you can redistribute it and/or modify  it
+   under  the  terms of the GNU General Public License as published  by  the
+   Free  Software  Foundation, either version 3 of the License, or (at  your
+   option) any later version.
+ 
+   This  program  is  distributed in the hope that it will  be  useful,  but
+   WITHOUT   ANY   WARRANTY;   without  even   the   implied   warranty   of
+   MERCHANTABILITY  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+   Public License for more details.
+ 
+   You  should have received a copy of the GNU General Public License  along
+   with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   29 Mar 20 0.1  001 - Initial version - MEJT
+   
+}
+ 
+BEGIN
+
+   INT limit = 16 - 1; 
+   INT count := 0;
+
+   PROC recursive fibonacci = (INT number) INT: { Finds the nth  Fibonacci number recursivly. }
+
+   IF number < 2 THEN 
+      number
+   ELSE
+      recursive fibonacci(number - 1) + recursive fibonacci(number - 2)
+   FI;
+
+   PROC iteritive fibonacci = (INT number) INT: { Finds the nth Fibonacci number iteratively. }
+
+   { http://www.rosettacode.org/wiki/Fibonacci_sequence#Iterative_3 }
+ 
+   IF number < 2 THEN 
+      number
+   ELSE
+      INT even:=0, odd:=1;
+      FOR count FROM 1 TO number DO
+         IF ODD count THEN odd ELSE even FI := odd + even { Find the next even or next odd term in the series. }
+      OD;
+      IF ODD number THEN odd ELSE even FI
+   FI;
+
+   PROC analytic fibonacci = (INT number)INT: { Computes the nth Fibonacci number using Binet's Formula. }
+
+   { http://www.rosettacode.org/wiki/Fibonacci_sequence#Analytic }
+
+   IF number < 2 THEN 
+      number
+   ELSE
+      REAL sqrt 5 := sqrt(5);
+      REAL phi := (1 + sqrt 5) / 2;
+      REAL _phi := 1/phi;
+      ROUND((phi**number + _phi**number) / sqrt 5 )
+   FI;
+
+
+   FOR count FROM 0 TO limit DO
+      write (fixed(analytic fibonacci(count), -0, 0));
+      IF count MOD 8 = 7 OR count = limit THEN write(newline) ELSE write(", ") FI
+   OD;
+
+   FOR count FROM 0 TO limit DO
+      write (fixed(iteritive fibonacci(count), -0, 0));
+      IF count MOD 8 = 7 OR count = limit THEN write(newline) ELSE write(", ") FI
+   OD;
+
+   FOR count FROM 0 TO limit DO
+      write (fixed(recursive fibonacci(count), -0, 0));
+      IF count MOD 8 = 7 OR count = limit THEN write(newline) ELSE write(", ") FI
+   OD
+
+END
+ 
+FINISH.
