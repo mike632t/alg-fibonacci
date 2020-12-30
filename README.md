@@ -8,6 +8,8 @@ The classic recurion problem. Outputs the factorial of all integers between
 On VAX/VMS compile using:
   
    $ algol factorial
+   
    $ link factorial
+   
    $ run factorial
 
