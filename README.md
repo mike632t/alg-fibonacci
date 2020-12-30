@@ -1,15 +1,15 @@
-## alg-factorial - An array of strings.
+## alg-fibonacci
 
 Written in Algol 68. 
 
-The classic recurion problem. Outputs the factorial of all integers between
-0 and the upper limit using resursion.
+Prints the first 30 numbers of the fibonacci series, using three different approaches.
 
 On VAX/VMS compile using:
   
-   $ algol factorial
+   $ algol fibonacci 
    
-   $ link factorial
+   $ link fibonacci 
    
-   $ run factorial
+   $ run fibonacci 
+
 
